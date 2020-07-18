@@ -17,7 +17,7 @@
   </header>
 
   <main>
-    <form class="meow-form">
+    <form class="meow-form" autocomplete="off">
       <label class="lead" for="name">Nombre</label>
       <input class="form-control my-2" type="text" name="name">
       <label class="lead" for="content">Escribe tu meow</label>
@@ -26,6 +26,11 @@
     </form>
   </main>
 
+  <div class="loading text-center align-center m-5">
+    <img class="w-25" src="loading.gif" alt="">
+  </div>
+
+  <script src="client.js" charset="utf-8"></script>
 </body>
 
 </html>
