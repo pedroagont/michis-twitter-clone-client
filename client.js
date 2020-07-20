@@ -3,7 +3,7 @@ console.log('Meow!');
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
 const miausElement = document.querySelector('.miaus');
-const API_URL = 'http://localhost:5000/miaus'
+const API_URL = 'https://michis-michis.herokuapp.com/miaus'
 
 const getMiaus = async () => {
   miausElement.innerHTML = '';
