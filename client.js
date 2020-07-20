@@ -27,7 +27,12 @@ form.addEventListener('submit', async (e) => {
     },
     body: JSON.stringify(miau)
   }).then(response => response.json())
-    .then(nuevoMiau => console.log(nuevoMiau))
+    .then(nuevoMiau => {
+      console.log(nuevoMiau)
+      form.reset()
+      loadingElement.style.display = 'none';
+      form.style.display = '';
+    })
     .catch(error => console.log(error));
 
 });
