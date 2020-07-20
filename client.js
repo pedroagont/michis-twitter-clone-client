@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5000/miaus'
 
 loadingElement.style.display = 'none';
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   const name = formData.get('name');
@@ -20,14 +20,14 @@ form.addEventListener('submit', (e) => {
   form.style.display = 'none';
   loadingElement.style.display = '';
 
-  fetch(API_URL, {
+  await fetch(API_URL, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(miau)
-  }).then(response => {
-      console.log(response.json());
-    });
+  }).then(response => response.json())
+    .then(nuevoMiau => console.log(nuevoMiau))
+    .catch(error => console.log(error));
 
 });
