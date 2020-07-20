@@ -6,6 +6,15 @@ const API_URL = 'http://localhost:5000/miaus'
 
 loadingElement.style.display = 'none';
 
+const getMiaus = async () => {
+  await fetch(API_URL)
+  .then(response => response.json())
+  .then(miaus => console.log(miaus))
+  .catch(error => console.log(error));
+}
+
+getMiaus();
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
