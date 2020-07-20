@@ -2,14 +2,33 @@ console.log('Meow!');
 
 const form = document.querySelector('form');
 const loadingElement = document.querySelector('.loading');
+const miausElement = document.querySelector('.miaus');
 const API_URL = 'http://localhost:5000/miaus'
 
-loadingElement.style.display = 'none';
-
 const getMiaus = async () => {
+  miausElement.innerHTML = '';
   await fetch(API_URL)
   .then(response => response.json())
-  .then(miaus => console.log(miaus))
+  .then(miaus => {
+    miaus.forEach(miau => {
+      const div = document.createElement('div');
+      div.setAttribute('class', 'card border-primary my-3 p-2');
+
+      const name = document.createElement('h5');
+      name.textContent = miau.name
+      name.setAttribute('class', 'card-title');
+
+      const content = document.createElement('p');
+      content.textContent = miau.content;
+      content.setAttribute('class', 'card-text');
+
+      div.appendChild(name);
+      div.appendChild(content);
+      miausElement.appendChild(div);
+
+      loadingElement.style.display = 'none';
+    })
+  })
   .catch(error => console.log(error));
 }
 
@@ -41,6 +60,7 @@ form.addEventListener('submit', async (e) => {
       form.reset()
       loadingElement.style.display = 'none';
       form.style.display = '';
+      getMiaus();
     })
     .catch(error => console.log(error));
 
